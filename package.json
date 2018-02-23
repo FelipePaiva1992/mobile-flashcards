@@ -1,0 +1,107 @@
+{
+  "name": "mobile-flashcards",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "babel-eslint": "^8.0.3",
+    "babel-jest": "^21.2.0",
+    "babel-preset-react-native": "^4.0.0",
+    "eslint": "^4.13.0",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-react-native": "^3.2.0",
+    "jest": "^21.2.1",
+    "jest-expo": "25.0.0",
+    "react-native-scripts": "1.11.1",
+    "react-test-renderer": "^16.2.0"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "eslintConfig": {
+    "env": {
+      "shared-node-browser": true
+    },
+    "globals": {
+      "fetch": true
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+      }
+    },
+    "extends": [
+      "eslint:recommended",
+      "google"
+    ],
+    "plugins": [
+      "react",
+      "react-native"
+    ],
+    "parser": "babel-eslint",
+    "rules": {
+      "object-curly-spacing": [
+        "error",
+        "always",
+        {
+          "objectsInObjects": false
+        }
+      ],
+      "require-jsdoc": 0,
+      "indent": [
+        1,
+        4,
+        {
+          "SwitchCase": 1,
+          "VariableDeclarator": 0
+        }
+      ],
+      "max-len": [
+        "error",
+        140
+      ],
+      "no-invalid-this": 0,
+      "no-case-declarations": 0,
+      "no-console": 1,
+      "no-multiple-empty-lines": 1,
+      "react/display-name": 1,
+      "react/jsx-boolean-value": 1,
+      "react/jsx-curly-spacing": 1,
+      "react/jsx-max-props-per-line": 1,
+      "react/jsx-indent-props": 1,
+      "react/jsx-no-duplicate-props": 1,
+      "react/jsx-no-undef": 1,
+      "react/jsx-sort-props": 1,
+      "react/jsx-uses-react": 1,
+      "react/jsx-uses-vars": 1,
+      "react/no-danger": 1,
+      "react/no-did-mount-set-state": 1,
+      "react/no-did-update-set-state": 1,
+      "react/no-multi-comp": 1,
+      "react/no-unknown-property": 1,
+      "react/prop-types": 1,
+      "react/react-in-jsx-scope": 1,
+      "react/self-closing-comp": 1,
+      "react/sort-comp": 1,
+      "react/jsx-wrap-multilines": 1
+    }
+  },
+  "dependencies": {
+    "autobind-decorator": "^2.1.0",
+    "expo": "^25.0.0",
+    "react": "16.2.0",
+    "react-native": "0.52.0",
+    "react-navigation": "^1.0.3"
+  }
+}
