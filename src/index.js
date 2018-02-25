@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { setNotification } from './util/notificationUtil';
 import { StackNavigator as stackNavigator, TabNavigator as tabNavigator } from 'react-navigation';
 import DeckList from './components/deckList';
 import AddDeck from './components/addDeck';
 import DeckDetail from './components/deckDetail';
+import { setNotification } from './util/notification';
 
 const tabNav = tabNavigator({
     DeckList: {

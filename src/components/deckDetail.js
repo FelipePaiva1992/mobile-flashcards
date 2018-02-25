@@ -3,11 +3,12 @@ import {
     View,
     Text,
     Button,
+    TouchableOpacity,
 } from 'react-native';
 import AddCardModal from './modal/addCard';
 import StartQuizModal from './modal/startQuiz';
 import autobind from 'autobind-decorator';
-import { fetchDecks as fetch } from '../util/storageUtil';
+import { fetchDecks as fetch } from '../util/storage';
 
 class DeckDetail extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ class DeckDetail extends Component {
         fetch()
             .then((decks) => {
                 this.setState({ deck: decks[deck.title] });
-                this.setState({ visible: false });
+                this.setState({ visibleAdd: false });
             });
     }
 
@@ -51,7 +52,7 @@ class DeckDetail extends Component {
         const { visibleAdd, visibleQuiz, deck } = this.state;
         const countQuest = deck.questions.length;
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center', backgroundColor: 'green', marginBottom: 10 }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignContent: 'center', alignItems: 'center', backgroundColor: 'white', marginBottom: 10 }}>
                 <AddCardModal
                     deck={deck}
                     onCancel={this.onCancel}
@@ -61,15 +62,24 @@ class DeckDetail extends Component {
                     deck={deck}
                     onCancel={this.onCancel}
                     visible={visibleQuiz}/>
-                <Text>{`${countQuest} cards`}</Text>
+                <Text style={{ fontSize: 30, fontWeight: 'bold', color: 'black', textAlign: 'center' }}>{`${countQuest} cards`}</Text>
 
-                <Button
-                    onPress={this.handleAddCard}
-                    title='Add Cards'/>
 
-                <Button
-                    onPress={this.handleQuiz}
-                    title='Start Quiz'/>
+                <TouchableOpacity
+                    onPress={this.handleAddCard}>
+                    <View
+                      style={{ width: 150, justifyContent: 'center', alignItems: 'center', backgroundColor: 'blue', paddingTop: 15, paddingBottom: 15, marginTop: 20 }}>
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Add Cards</Text>
+                    </View>
+                </TouchableOpacity>
+
+                {countQuest >= 1 && <TouchableOpacity
+                    onPress={this.handleQuiz}>
+                    <View
+                      style={{ width: 150, justifyContent: 'center', alignItems: 'center', backgroundColor: 'blue', paddingTop: 15, paddingBottom: 15, marginTop: 20 }}>
+                        <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Start Quiz</Text>
+                    </View>
+                </TouchableOpacity>}
             </View>
         );
     }

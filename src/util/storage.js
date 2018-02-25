@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native';
 
-export const STORAGE_KEY = 'decks:flashcards';
+export const KEY = 'decks:flashcards';
 
 let data =
 {
@@ -29,35 +29,35 @@ let data =
 };
 
 export function initialData() {
-    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    AsyncStorage.setItem(KEY, JSON.stringify(data));
     return data;
 }
 
 export function fetchDecks() {
     return AsyncStorage
-        .getItem(STORAGE_KEY)
+        .getItem(KEY)
         .then((results) => {
             return results === null ? initialData() : JSON.parse(results);
         });
 }
 
 export function createDeck(deck) {
-    return AsyncStorage
-        .mergeItem(STORAGE_KEY, JSON.stringify(deck));
+    return AsyncStorage.mergeItem(KEY, JSON.stringify(deck));
 }
 
-export function addQuestionForDeck(card, deckName) {
+export function addQuestionForDeck(newCard, name) {
     return AsyncStorage
-        .getItem(STORAGE_KEY, (err, result) => {
+        .getItem(KEY, (err, result) => {
             let decks = JSON.parse(result);
-
-            let newQuestions = JSON.parse(JSON.stringify(decks[deckName].questions));
-            newQuestions[newQuestions.length] = card;
-
+            let newQuestions = JSON.parse(JSON.stringify(decks[name].questions));
+            newQuestions[newQuestions.length] = newCard;
             const value = JSON.stringify({
-                [deckName]: { title: deckName, questions: newQuestions },
+                [name]: {
+                  title: name,
+                  questions: newQuestions,
+                },
             });
 
-            AsyncStorage.mergeItem(STORAGE_KEY, value);
+            AsyncStorage.mergeItem(KEY, value);
         });
 }

@@ -5,7 +5,7 @@ import {
     TextInput,
     Button,
 } from 'react-native';
-import { createDeck } from '../util/storageUtil';
+import { createDeck } from '../util/storage';
 
 class AddDeck extends Component {
     constructor(props) {
@@ -21,6 +21,10 @@ class AddDeck extends Component {
         const { text } = this.state;
         const { navigation } = this.props;
 
+        if(text.length <= 0) {
+            return;
+        }
+
         const newDeck = { [text]: { title: text, questions: [] }};
         createDeck(newDeck)
             .then(() => {
@@ -34,14 +38,15 @@ class AddDeck extends Component {
     render() {
         const { loading, text } = this.state;
         return (
-            <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center' }}>
                 <TextInput
-                    placeholder='Deck Title'
+                    placeholder='New Deck Title'
                     onChangeText={(text) => this.setState({ text })}
-                    value={text}/>
+                    value={text}
+                    style={{ width: 300, fontSize: 16, padding: 20 }}/>
                 <Button
                     onPress={this.handleDeckCreation.bind(this)}
-                    title='Add'/>
+                    title='Add New Deck'/>
             </View>
         );
     }

@@ -5,7 +5,7 @@ import {
     Button,
     Modal,
 } from 'react-native';
-import { addQuestionForDeck } from '../../util/storageUtil';
+import { addQuestionForDeck } from '../../util/storage';
 
 class AddCard extends Component {
 
@@ -23,11 +23,14 @@ class AddCard extends Component {
         const { deck } = this.props;
         const { question, answer } = this.state;
 
+        if(question.length <= 0 || answer.length <= 0) {
+            return;
+        }
+
         const newQuestion = {
             question: question,
             answer: answer,
         };
-        console.log(deck.title)
         addQuestionForDeck(newQuestion, deck.title)
             .then(() => {
                 this.props.onCardAdd();
@@ -43,18 +46,20 @@ class AddCard extends Component {
                 onRequestClose={onCancel}
                 transparent
                 visible={visible}>
-                <View style={{ flex: 1, backgroundColor: 'blue' }}>
+                <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center' }}>
                     <TextInput
                         placeholder='Question'
                         onChangeText={(question) => this.setState({ question })}
-                        value={question}/>
+                        value={question}
+                        style={{ width: 300, fontSize: 16, padding: 20 }}/>
                     <TextInput
                         placeholder='Answer'
                         onChangeText={(answer) => this.setState({ answer })}
-                        value={answer}/>
+                        value={answer}
+                        style={{ width: 300, fontSize: 16, padding: 20 }}/>
                     <Button
                         onPress={this.handleDeckCreation.bind(this)}
-                        title='Add'/>
+                        title='Add New Card'/>
                 </View>
             </Modal>
         );

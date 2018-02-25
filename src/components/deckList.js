@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
     ScrollView,
 } from 'react-native';
-import { fetchDecks as fetch } from '../util/storageUtil';
+import { fetchDecks as fetch } from '../util/storage';
 import Deck from './deck';
 
 class DeckList extends Component {
